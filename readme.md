@@ -6,6 +6,6 @@ Esto va a necesitar un servidor que esté en nuestra casa para eso ocuparemos un
 
 Bien ahora a empzar a hacer las cosas.
 
-<div>
-	<img src="nodemcu/images/mculed.jpg" width="70%">
-</div>
+<picture>
+	<img src="nodemcu/images/mculed.jpg" width="100%">
+</picture>
