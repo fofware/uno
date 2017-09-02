@@ -1,0 +1,30 @@
+function wifi_setup()
+    print("starting setup mode")
+    enduser_setup.start(
+        function()
+--            tmr.stop(3)
+            print("Connected to wifi as:" .. wifi.sta.getip())
+    --      dofile("main.lua")
+        end,
+        function(err, str)
+            print("enduser_setup: Err #" .. err .. ": " .. str)
+        end
+    );
+--    do
+        print("\n  Default SoftAP configuration:")
+--        for k,v in pairs(wifi.ap.getdefaultconfig(true)) do
+--            print("   "..k.." :",v)
+--        end
+--    end
+--    tmr.delay(100000)
+    print(wifi.ap.getip())
+end
+if def_sta_config == "" then
+    wifi_setup()
+else
+    wifi.ap.config({ssid="MyPersonalSSID", auth=wifi.OPEN})
+--    wifi.setmode(wifi.STATIONAP)
+    wifi.setmode(wifi.SOFTAP)
+--    enduser_setup.manual(true)
+    wifi_setup()
+end

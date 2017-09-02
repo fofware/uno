@@ -1,0 +1,192 @@
+local dev_info = {
+    type="info",
+    id="NodeMCU_"..node.chipid(),
+    macAddres=wifi.sta.getmac(),
+    name="NodeMCU_"..node.chipid(),
+    site="25 de Mayo",
+    account="58f6ba53cc88a860403ba2a3",
+    controler={
+        cosa1={
+            name="Led Verde",
+            site="Comedor",
+            actuador={
+                pin=1,
+                pinSet={
+                    on="off",
+                    off="on"
+                }
+                ,status="off"
+            }
+        }
+        ,cosa2={
+            name="Led Amarillo",
+            site="Garage",
+            actuador={
+                pin=2,
+                pinSet={
+                    on="off",
+                    off="on"
+                }
+                ,status="off"
+            }
+        }
+        ,cosa3={
+            name="Led Rojo",
+            site="Habitacion",
+            actuador={
+                pin=5,
+                pinSet={
+                    on="off",
+                    off="on"
+                }
+                ,status="off"
+            }
+        }
+        ,cosa4={
+            name="Led Blanco",
+            site="Cueva",
+            actuador={
+                pin=7,
+                pinSet={
+                    on="off",
+                    off="on"
+                }
+                ,status="off"
+            }
+        }
+        ,cosa5={
+            name="Led Azul",
+            site="Susana",
+            actuador={
+                pin=8,
+                pinSet={
+                    on="off",
+                    off="on"
+                }
+                ,status="off"
+            }
+        }
+    }
+}
+pinstatus = {}
+pinstatus[1]=1
+pinstatus[2]=2
+pinstatus[5]=3
+pinstatus[7]=4
+pinstatus[8]=5
+
+function procesa(ws,msg,opcode)
+    if opcode == 1 then
+        -- procesa mensajes de texto
+        local ok, data = pcall(cjson.decode,msg);
+        if ok then
+            print(data.type);
+            if data.type == "setTime" then
+                rtctime.set(data.sec,data.usec)
+                print(data.sec,data.usec)
+                tm = rtctime.epoch2cal(rtctime.get())
+                print(string.format("%04d/%02d/%02d %02d:%02d:%02d", tm["year"], tm["mon"], tm["day"], tm["hour"], tm["min"], tm["sec"]))
+            elseif data.type == "pinSet" then
+                local cosan = string.format("cosa%d",pinstatus[data.pin])
+                if data.value == "off" then
+                    gpio.write(data.pin,gpio.LOW)
+--                    dev_info.controler[cosan].actuador.status = data.value
+                elseif data.value == "on" then
+                    gpio.write(data.pin,gpio.HIGH)
+                else
+--                    value = not gpio.read(data.pin)
+--                    gpio.write(data.pin,value)
+                end
+                dev_info.controler[cosan].actuador.status = data.value
+                local strInfo = cjson.encode(dev_info)
+                print(strInfo);
+                ws:send(strInfo);
+                
+            elseif data.type == "getinfo" then
+                local strInfo = cjson.encode(dev_info)
+                print(strInfo);
+                ws:send(strInfo);
+            else
+                print(msg)                    
+            end
+        else
+            print('got message:', msg, opcode) -- opcode is 1 for text message, 2 for binary
+        end
+    else
+        -- recibe binary data
+    end
+end
+function server_connect()
+    ws = websocket.createClient()
+    local ok, device = pcall(cjson.encode,dev_info)
+    if not ok then device = "error" end
+    ws:config({headers={['User-Agent']='NodeMCU',["Publisher-Agent"]=device}})
+    ws:on("connection", function(ws)
+        ws_connect_timer:stop()
+--        ping_timer:start()
+        print('got ws connection')
+--        ws:send("NodeMCU_"..node.chipid())
+                local strInfo = cjson.encode(dev_info)
+                print(strInfo);
+                ws:send(strInfo);
+    end)
+    ws:on("close", function(_, status)
+        print('ws connection closed', status)
+        ws_connect_timer:start()
+--        ping_timer:stop()
+        ws = nil -- required to lua gc the websocket client
+    end)
+    ws:on("receive", procesa)
+--    ws:connect('ws://192.96.218.113:3000')
+--    ws:connect('ws://172.31.2.2:1337')
+    ws:connect('ws://172.31.2.2')
+end
+
+--local def_sta_config=wifi.sta.getdefaultconfig(true)
+wifi.sta.eventMonReg(wifi.STA_IDLE, function() print("WIFI:STATION_IDLE") end)
+wifi.sta.eventMonReg(wifi.STA_CONNECTING, function() print("WIFI:STATION_CONNECTING") end)
+wifi.sta.eventMonReg(wifi.STA_WRONGPWD, function() 
+    print("WIFI:STATION_WRONG_PASSWORD") 
+    wifi.sta.eventMonStop()
+    wifi.sta.disconnect()
+    wifi_setup()
+end)
+wifi.sta.eventMonReg(wifi.STA_APNOTFOUND, function() 
+    print("WIFI:STATION_NO_AP_FOUND")
+    wifi.sta.eventMonStop()
+    wifi.sta.disconnect()
+    wifi_setup()
+end)
+wifi.sta.eventMonReg(wifi.STA_FAIL, function() 
+    print("WIFI:STATION_CONNECT_FAIL") 
+    wifi.sta.eventMonStop()
+    wifi.sta.disconnect()
+    wifi_setup()
+end)
+wifi.sta.eventMonReg(wifi.STA_GOTIP, function() 
+--    print("STATION_GOT_IP")
+    print ("wifi connected ok")
+--  set_time()
+    ws_connect_timer:start()
+end)
+
+function ping()
+    local sec, usec = rtctime.get();
+     ws:send('{"type":"ping","sec":'..sec..',"usec":'..usec..'}')
+--[[
+    local strInfo = cjson.encode(dev_info)
+    print(strInfo);
+    ws:send(strInfo);
+]]
+end
+
+print("Connecting to WiFi access point...")
+print(string.format("\tDefault station config\n\tssid:\"%s\"\tpassword:\"%s\"%s", def_sta_config.ssid, def_sta_config.pwd, (type(def_sta_config.bssid)=="string" and "\tbssid:\""..def_sta_config.bssid.."\"" or "")))
+wifi.setmode(wifi.STATION)
+wifi.sta.config(def_sta_config)
+wifi.sta.eventMonStart(1000)
+
+ws_connect_timer = tmr.create()
+ws_connect_timer:register(5000, tmr.ALARM_AUTO, server_connect )
+--ping_timer = tmr.create()
+--ping_timer:register(10000, tmr.ALARM_AUTO, ping)
