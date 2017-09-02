@@ -11,11 +11,15 @@ Esto va a necesitar un servidor que esté en nuestra casa para eso ocuparemos un
 
 <div class="octicon octicon-book">
 	<h1>Este es el Módulo NodeMCU</h1>
-</div>
 <div>
+		<figure>
+				<img src="nodemcu/images/mculed.jpg">
+				<figcaption>Fig1. - A view of the pulpit rock in Norway.</figcaption>
+			</figure>
 	<picture>
 		<img src="nodemcu/images/mculed.jpg" width="100%">
 	</picture>
+</div>
 </div>
 <div>
 	Este modulo es realmente maravilloso con el podemos hacer infinidad de cosas y 
