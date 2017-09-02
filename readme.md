@@ -4,5 +4,5 @@ En otras palabras hacer un servidor donde se conetan dispositivos orientados a I
 
 Esto va a necesitar un servidor que esté en nuestra casa para eso ocuparemos una computadora, el uso de NodeJS es con la idea de hacer algo que ande en una máquina con linux, Windows o MacOS.
 
-Bien ahora a empzar.
+Bien ahora a empzar a hacer las cosas.
 
