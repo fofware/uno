@@ -2,7 +2,7 @@
 	<h1>Este es el Módulo NodeMCU</h1>
 <div>
 		<figure>
-				<img src="nodemcu/images/mculed.jpg">
+				<img src="/nodemcu/images/mculed.jpg">
 				<figcaption>Fig1. - A view of the pulpit rock in Norway.</figcaption>
 			</figure>
 </div>
