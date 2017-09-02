@@ -9,7 +9,9 @@ Esto va a necesitar un servidor que esté en nuestra casa para eso ocuparemos un
 </p>
 <p>Bien ahora a empzar a hacer las cosas.</p>
 
-<h1>Este es el Módulo NodeMCU</h1>
+<div class="octicon octicon-book">
+	<h1>Este es el Módulo NodeMCU</h1>
+</div>
 <div>
 	<picture>
 		<img src="nodemcu/images/mculed.jpg" width="100%">
