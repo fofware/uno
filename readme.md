@@ -24,6 +24,5 @@
 	<li>
 		<a href="https://programarfacil.com/esp8266/proyectos-con-esp8266-iot/" traget="_subpage">6 proyectos con ESP8266 orientados a la tecnología del IoT</a>
 	</li>
-						
 </ul>			
 
