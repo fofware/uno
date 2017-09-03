@@ -24,10 +24,10 @@
 				<a href="https://esp8266.ru/esplorer/#download" target="_subpage" >Download ESPlorer</a>
 			</li>
 			<li>
-				<a href="https://nodemcu-build.com/">NodeMCU custom build</a>
+				<a href="https://nodemcu-build.com/" target="_subpage">NodeMCU custom build</a>
 			</li>
 			<li>
-				<a href="http://henrysbench.capnfatz.com/henrys-bench/arduino-projects-tips-and-more/powering-the-esp-12e-nodemcu-development-board/">Powering the ESP-12E NodeMCU Development Board</a>
+				<a href="http://henrysbench.capnfatz.com/henrys-bench/arduino-projects-tips-and-more/powering-the-esp-12e-nodemcu-development-board/" target="_subpage">Powering the ESP-12E NodeMCU Development Board</a>
 			</li>
 
 		</ul>			
