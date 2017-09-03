@@ -26,6 +26,10 @@
 			<li>
 				<a href="https://nodemcu-build.com/">NodeMCU custom build</a>
 			</li>
+			<li>
+				<a href="http://henrysbench.capnfatz.com/henrys-bench/arduino-projects-tips-and-more/powering-the-esp-12e-nodemcu-development-board/">Powering the ESP-12E NodeMCU Development Board</a>
+			</li>
+
 		</ul>			
 	</div>
 </div>
