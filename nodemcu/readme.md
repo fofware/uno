@@ -12,22 +12,22 @@
 		<h3>Links</h3>
 		<ul>
 			<li>
-				<a href="https://nodemcu.readthedocs.io/en/master/" traget="_blanck"> Documentación de NodeMCU </a>
+				<a href="https://nodemcu.readthedocs.io/en/master/" traget="_blank"> Documentación de NodeMCU </a>
 			</li>
 			<li>
-				<a href="http://randomnerdtutorials.com/esp8266-adc-reading-analog-values-with-nodemcu/" target="_blanck">ESP8266 ADC – Reading Analog Values with NodeMCU</a>
+				<a href="http://randomnerdtutorials.com/esp8266-adc-reading-analog-values-with-nodemcu/" target="_blank">ESP8266 ADC – Reading Analog Values with NodeMCU</a>
 			</li>
 			<li>
-					<a href="http://ruben1.narod.ru/hobby/arduino/esp8266_ir.html" target="_blanck" >Excelente Idea control remomoto para toda la casal</a>
+					<a href="http://ruben1.narod.ru/hobby/arduino/esp8266_ir.html" target="_blank" >Excelente Idea control remomoto para toda la casal</a>
 			</li>
 			<li>
-				<a href="https://esp8266.ru/esplorer/#download" target="_blanck" >Download ESPlorer</a>
+				<a href="https://esp8266.ru/esplorer/#download" target="_blank" >Download ESPlorer</a>
 			</li>
 			<li>
-				<a href="https://nodemcu-build.com/" target="_blanck">NodeMCU custom build</a>
+				<a href="https://nodemcu-build.com/" target="_blank">NodeMCU custom build</a>
 			</li>
 			<li>
-				<a href="http://henrysbench.capnfatz.com/henrys-bench/arduino-projects-tips-and-more/powering-the-esp-12e-nodemcu-development-board/" target="_blanck">Powering the ESP-12E NodeMCU Development Board</a>
+				<a href="http://henrysbench.capnfatz.com/henrys-bench/arduino-projects-tips-and-more/powering-the-esp-12e-nodemcu-development-board/" target="_blank">Powering the ESP-12E NodeMCU Development Board</a>
 			</li>
 
 		</ul>			
