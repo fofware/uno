@@ -29,7 +29,6 @@
 			<li>
 				<a href="http://henrysbench.capnfatz.com/henrys-bench/arduino-projects-tips-and-more/powering-the-esp-12e-nodemcu-development-board/" target="_blank">Powering the ESP-12E NodeMCU Development Board</a>
 			</li>
-
-		</ul>			
+		</ul>
 	</div>
 </div>
